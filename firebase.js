@@ -1,6 +1,4 @@
-// ----------------------------
-// Firebase Config — Blindfold Debugging
-// ----------------------------
+
 const firebaseConfig = {
   apiKey: "AIzaSyDJrMOF2P76MTCw0VOG5B6EyrubuNplTBo",
   authDomain: "blindfold-debugging.firebaseapp.com",
@@ -12,5 +10,5 @@ const firebaseConfig = {
   measurementId: "G-3251SXPYC8"
 };
 
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
