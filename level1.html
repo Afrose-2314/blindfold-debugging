@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Level 1</title>
+<link rel="stylesheet" href="style.css">
+<script src="questions.js"></script>
+</head>
+<body>
+<div class="q-box">
+<h2>Level 1 — Debugging</h2>
+<pre id="code"></pre>
+<textarea id="fix" placeholder="Type corrected code here..."></textarea>
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+</div>
+
+
+<script>
+let index = 0;
+loadQ();
+
+
+function loadQ(){ code.innerText = L1[index].wrong; }
+
+
+function check(){
+if(fix.value.trim() === L1[index].correct.trim()){
+index++;
+if(index === L1.length){ window.location.href="level2.html"; }
+else loadQ();
+} else msg.innerText = "Incorrect — Try again";
+}
+</script>
+</body>
+</html>
