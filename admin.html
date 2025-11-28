@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Panel</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-<script src="firebase.js"></script>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase.js"></script>
 </head>
 <body>
-<div class="admin-box">
-<h1>ADMIN PANEL</h1>
-<button onclick="startEvent()">START EVENT</button>
-<button onclick="resetEvent()">RESET</button>
-</div>
+  <div class="admin-box">
+    <h1>ADMIN PANEL</h1>
+    <button onclick="startEvent()">START EVENT</button>
+    <button onclick="resetEvent()">RESET EVENT</button>
+    <p id="status"></p>
+  </div>
 
+  <script>
+    const db = firebase.database();
 
-<script>
-const db = firebase.database();
+    // Start the event
+    function startEvent(){
+      db.ref("event").set({start:1}, (err)=>{
+        if(err) status.innerText = "Error starting event: " + err;
+        else status.innerText = "Event started!";
+      });
+    }
 
+    // Reset the event
+    function resetEvent(){
+      db.ref("event").set({start:0}, (err)=>{
+        if(err) status.innerText = "Error resetting event: " + err;
+        else status.innerText = "Event reset!";
+      });
+    }
 
-function startEvent(){ db.ref("event").set({start:1}); }
-function resetEvent(){ db.ref("event").set({start:0}); }
-</script>
+    // Initialize event in DB if missing
+    db.ref("event").once("value").then(snap=>{
+      if(!snap.exists()) db.ref("event").set({start:0});
+    });
+  </script>
 </body>
 </html>
