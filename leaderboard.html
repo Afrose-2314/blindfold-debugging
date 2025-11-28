@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Leaderboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="firebase.js"></script>
+</head>
+<body>
+<h1 style="text-align:center;">Leaderboard</h1>
+<table class="leader">
+<thead><tr><th>Team</th><th>Score</th></tr></thead>
+<tbody id="board"></tbody>
+</table>
+
+
+<script>
+const db = firebase.database();
+db.ref("scores").on("value", snap =>{
+let out="";
+snap.forEach(s =>{
+out += `<tr><td>${s.key}</td><td>${s.val().score}</td></tr>`;
+});
+board.innerHTML = out;
+});
+</script>
+</body>
+</html>
