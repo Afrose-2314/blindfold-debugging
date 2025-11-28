@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="firebase.js"></script>
+</head>
+<body>
+<div class="admin-box">
+<h1>ADMIN PANEL</h1>
+<button onclick="startEvent()">START EVENT</button>
+<button onclick="resetEvent()">RESET</button>
+</div>
+
+
+<script>
+const db = firebase.database();
+
+
+function startEvent(){ db.ref("event").set({start:1}); }
+function resetEvent(){ db.ref("event").set({start:0}); }
+</script>
+</body>
+</html>
