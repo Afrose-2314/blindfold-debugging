@@ -1,0 +1,24 @@
+body { background:black; color:white; font-family:Arial; }
+.login-box, .center-box, .admin-box {
+width:350px; margin:auto; margin-top:120px; padding:25px;
+background:#222; border-radius:10px; text-align:center;
+}
+button { padding:10px 20px; margin-top:15px; cursor:pointer; }
+.error { color:red; }
+
+
+.countdown {
+position:fixed; top:0; left:0; width:100%; height:100%;
+display:flex; justify-content:center; align-items:center;
+font-size:120px; background:black; color:#0ff;
+animation:fade 1s infinite;
+}
+
+
+.hidden { display:none; }
+
+
+@keyframes fade {
+0%{opacity:0.2; transform:scale(0.7);}
+100%{opacity:1; transform:scale(1);}
+}
