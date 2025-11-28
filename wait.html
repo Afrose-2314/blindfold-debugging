@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Waiting Room</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="firebase.js"></script>
+</head>
+<body>
+<div class="center-box">
+<h1>Waiting for Event to Start…</h1>
+</div>
+
+
+<div id="countdown" class="countdown hidden"></div>
+
+
+<script>
+const db = firebase.database();
+
+
+db.ref("event/start").on("value", snap => {
+if(snap.val() === 1){ startCountdown(); }
+});
+
+
+function startCountdown(){
+let time = 5;
+const box = document.getElementById("countdown");
+box.classList.remove("hidden");
+
+
+const interval = setInterval(() =>{
+box.innerHTML = `<span class='num'>${time}</span>`;
+time--;
+if(time < 0){ clearInterval(interval); window.location.href="level1.html"; }
+},1000);
+}
+</script>
+</body>
+</html>
