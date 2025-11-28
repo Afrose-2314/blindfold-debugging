@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blindfold Debugging - Login</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="firebase.js"></script>
+</head>
+<body>
+<div class="login-box">
+<h2>Team Login</h2>
+<input id="team" placeholder="Enter Team Name">
+<input id="pass" type="password" placeholder="Enter Password">
+<button onclick="teamLogin()">Login</button>
+<p id="error" class="error"></p>
+</div>
+
+
+<script>
+function teamLogin(){
+const t = team.value.trim();
+const p = pass.value.trim();
+if(t==="" || p===""){
+error.innerText="Please fill all fields"; return;
+}
+if(p!=="12345678"){
+error.innerText="Incorrect password"; return;
+}
+localStorage.setItem("team", t);
+window.location.href="wait.html";
+}
+</script>
+</body>
+</html>
